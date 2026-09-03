@@ -1,0 +1,133 @@
+@import 'tailwindcss';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #111111;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  width: min(100% - 40px, 960px);
+  margin: 0 auto;
+  padding: 48px 0 80px;
+}
+
+header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid #111111;
+  padding-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 4px;
+}
+
+section {
+  padding: 72px 0;
+  border-bottom: 1px solid #cccccc;
+}
+
+.week-label {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 0 0 28px;
+  font-size: clamp(30px, 5vw, 54px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+h3 {
+  margin: 40px 0 18px;
+  font-size: 24px;
+}
+
+ul,
+.text {
+  max-width: 700px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.text p {
+  margin: 0 0 20px;
+}
+
+figure {
+  margin: 40px 0 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+figcaption {
+  margin-top: 8px;
+  color: #666666;
+  font-size: 13px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.gallery figure {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  main {
+    width: min(100% - 28px, 960px);
+    padding-top: 28px;
+  }
+
+  header {
+    display: block;
+  }
+
+  nav {
+    margin-top: 16px;
+  }
+
+  section {
+    padding: 52px 0;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
