@@ -14,18 +14,18 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://pet-player-thesis.epic-acorn-4026.chatgpt.site'),
-  title: 'Thesis Documentation — PET PLAYER',
+  title: 'thesis documentation',
   description:
     'Weekly documentation for PET PLAYER, a cooperative game designed for a human and a dog.',
   openGraph: {
-    title: 'Thesis Documentation — PET PLAYER',
+    title: 'thesis documentation',
     description: 'Weekly paper prototype documentation for PET PLAYER.',
     type: 'website',
     images: ['/og.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Thesis Documentation — PET PLAYER',
+    title: 'thesis documentation',
     description: 'Weekly paper prototype documentation for PET PLAYER.',
     images: ['/og.png'],
   },
