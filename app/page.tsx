@@ -1,44 +1,61 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 const weeks = ['week-1', 'week-2', 'week-3', 'week-4', 'week-5'];
 
 export default function Home() {
   const [activeWeek, setActiveWeek] = useState('week-1');
+  const reader = useRef<HTMLDialogElement>(null);
+
+  function openWeek(week: string) {
+    setActiveWeek(week);
+    reader.current?.showModal();
+    if (reader.current) reader.current.scrollTop = 0;
+    document.body.classList.add('reading');
+  }
+
+  function closeWeek() {
+    reader.current?.close();
+  }
 
   return (
     <main className="archive-page">
-      <header className="archive-header">
-        <div>
-          <p className="eyebrow">THESIS ARCHIVE / 2026</p>
-          <h1>thesis documentation</h1>
-        </div>
-        <p className="header-note">Select a folder to open an entry.</p>
+      <header className="sr-only">
+        <p>Silvia Zhang</p>
+        <h1>thesis documentation</h1>
       </header>
 
       <section className="filing-cabinet" aria-label="Weekly documentation folders">
-        <div className="folder-tabs" role="tablist" aria-label="Weekly entries">
+        <img className="cabinet-art" src="/images/archive-cabinet.png" alt="Silvia Zhang — thesis documentation. An illustrated paper archive with five weekly folders." width="1122" height="1403" fetchPriority="high" />
+        <nav className="folder-tabs" aria-label="Weekly entries">
           {weeks.map((week, index) => (
             <button
               key={week}
-              className={`folder-tab ${activeWeek === week ? 'is-active' : ''}`}
+              className={`folder-hotspot ${week}`}
               type="button"
-              role="tab"
-              aria-selected={activeWeek === week}
-              aria-controls={`${week}-panel`}
-              onClick={() => setActiveWeek(week)}
+              aria-label={`Open week${index + 1}`}
+              aria-haspopup="dialog"
+              onClick={() => openWeek(week)}
             >
-              Week {index + 1}
+              <span className="sr-only">week{index + 1}</span>
             </button>
           ))}
-        </div>
+        </nav>
+      </section>
+      <nav className="mobile-folders" aria-label="Open a weekly folder">
+        {weeks.map((week, index) => <button key={week} onClick={() => openWeek(week)}>week{index + 1}</button>)}
+      </nav>
 
-        <div className="cabinet-body">
-          <div className="cabinet-label">THESIS DOCUMENTATION / INDEX</div>
+      <dialog ref={reader} className="entry-reader" aria-labelledby="reader-title" onClose={() => document.body.classList.remove('reading')} onClick={(event) => { if (event.target === event.currentTarget) closeWeek(); }}>
+        <div className="reader-paper">
+          <header className="reader-header">
+            <p id="reader-title">Silvia Zhang / {activeWeek.replace('-', '')}</p>
+            <button className="close-folder" onClick={closeWeek} autoFocus>Close folder</button>
+          </header>
 
           {activeWeek === 'week-1' && (
-            <article id="week-1-panel" className="week-panel" role="tabpanel">
+            <article id="week-1-panel" className="week-panel">
               <p className="week-label">Week 1</p>
               <h2>A paper prototype brainstorm</h2>
               <ul>
@@ -53,7 +70,7 @@ export default function Home() {
           )}
 
           {activeWeek === 'week-2' && (
-            <article id="week-2-panel" className="week-panel" role="tabpanel">
+            <article id="week-2-panel" className="week-panel">
               <p className="week-label">Week 2</p>
               <h2>Paper prototype</h2>
               <h3>PET PLAYER</h3>
@@ -86,14 +103,14 @@ export default function Home() {
           )}
 
           {['week-3', 'week-4', 'week-5'].includes(activeWeek) && (
-            <article id={`${activeWeek}-panel`} className="week-panel empty-panel" role="tabpanel">
+            <article id={`${activeWeek}-panel`} className="week-panel empty-panel">
               <p className="week-label">{activeWeek.replace('-', ' ')}</p>
               <h2>Documentation coming soon.</h2>
               <p>This folder is ready for the next entry.</p>
             </article>
           )}
         </div>
-      </section>
+      </dialog>
     </main>
   );
 }

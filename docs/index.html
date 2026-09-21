@@ -8,29 +8,33 @@
   </head>
   <body>
     <main class="archive-page">
-      <header class="archive-header">
-        <div><p class="eyebrow">THESIS ARCHIVE / 2026</p><h1>thesis documentation</h1></div>
-        <p class="header-note">Select a folder to open an entry.</p>
+      <header class="sr-only">
+        <p>Silvia Zhang</p><h1>thesis documentation</h1>
       </header>
 
       <section class="filing-cabinet" aria-label="Weekly documentation folders">
-        <div class="folder-tabs" role="tablist" aria-label="Weekly entries">
-          <button class="folder-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="week-1-panel" data-week="week-1">Week 1</button>
-          <button class="folder-tab" type="button" role="tab" aria-selected="false" aria-controls="week-2-panel" data-week="week-2">Week 2</button>
-          <button class="folder-tab" type="button" role="tab" aria-selected="false" aria-controls="week-3-panel" data-week="week-3">Week 3</button>
-          <button class="folder-tab" type="button" role="tab" aria-selected="false" aria-controls="week-4-panel" data-week="week-4">Week 4</button>
-          <button class="folder-tab" type="button" role="tab" aria-selected="false" aria-controls="week-5-panel" data-week="week-5">Week 5</button>
-        </div>
-
-        <div class="cabinet-body">
-          <div class="cabinet-label">THESIS DOCUMENTATION / INDEX</div>
-          <article id="week-1-panel" class="week-panel" role="tabpanel" data-panel="week-1">
+        <img class="cabinet-art" src="./images/archive-cabinet.png" alt="Silvia Zhang — thesis documentation. An illustrated paper archive with five weekly folders." width="1122" height="1403" fetchpriority="high" />
+        <nav class="folder-tabs" aria-label="Weekly entries">
+          <button class="folder-hotspot week-1" type="button" aria-haspopup="dialog" aria-label="Open week1" data-week="week-1"><span class="sr-only">week1</span></button>
+          <button class="folder-hotspot week-2" type="button" aria-haspopup="dialog" aria-label="Open week2" data-week="week-2"><span class="sr-only">week2</span></button>
+          <button class="folder-hotspot week-3" type="button" aria-haspopup="dialog" aria-label="Open week3" data-week="week-3"><span class="sr-only">week3</span></button>
+          <button class="folder-hotspot week-4" type="button" aria-haspopup="dialog" aria-label="Open week4" data-week="week-4"><span class="sr-only">week4</span></button>
+          <button class="folder-hotspot week-5" type="button" aria-haspopup="dialog" aria-label="Open week5" data-week="week-5"><span class="sr-only">week5</span></button>
+        </nav>
+      </section>
+      <nav class="mobile-folders" aria-label="Open a weekly folder">
+        <button data-week="week-1">week1</button><button data-week="week-2">week2</button><button data-week="week-3">week3</button><button data-week="week-4">week4</button><button data-week="week-5">week5</button>
+      </nav>
+      <dialog class="entry-reader" aria-labelledby="reader-title">
+        <div class="reader-paper">
+          <header class="reader-header"><p id="reader-title">Silvia Zhang / week1</p><button class="close-folder" autofocus>Close folder</button></header>
+          <article id="week-1-panel" class="week-panel" data-panel="week-1">
             <p class="week-label">Week 1</p><h2>A paper prototype brainstorm</h2>
             <ul><li>A CD player game</li><li>A choice-making game — a bunch of cards with choices on them that lead to different endings</li></ul>
             <figure><img src="./images/week-1-brainstorm.jpg" alt="Brainstorming ideas written on green sticky notes" /><figcaption>Paper prototype brainstorm.</figcaption></figure>
           </article>
 
-          <article id="week-2-panel" class="week-panel" role="tabpanel" data-panel="week-2" hidden>
+          <article id="week-2-panel" class="week-panel" data-panel="week-2" hidden>
             <p class="week-label">Week 2</p><h2>Paper prototype</h2><h3>PET PLAYER</h3>
             <div class="text">
               <p>My project is called <strong>PET PLAYER</strong>. It is a cooperative game designed for a human and a dog to play together as two different players.</p>
@@ -56,26 +60,29 @@
             </div>
           </article>
 
-          <article id="week-3-panel" class="week-panel empty-panel" role="tabpanel" data-panel="week-3" hidden><p class="week-label">Week 3</p><h2>Documentation coming soon.</h2><p>This folder is ready for the next entry.</p></article>
-          <article id="week-4-panel" class="week-panel empty-panel" role="tabpanel" data-panel="week-4" hidden><p class="week-label">Week 4</p><h2>Documentation coming soon.</h2><p>This folder is ready for the next entry.</p></article>
-          <article id="week-5-panel" class="week-panel empty-panel" role="tabpanel" data-panel="week-5" hidden><p class="week-label">Week 5</p><h2>Documentation coming soon.</h2><p>This folder is ready for the next entry.</p></article>
+          <article id="week-3-panel" class="week-panel empty-panel" data-panel="week-3" hidden><p class="week-label">Week 3</p><h2>Documentation coming soon.</h2><p>This folder is ready for the next entry.</p></article>
+          <article id="week-4-panel" class="week-panel empty-panel" data-panel="week-4" hidden><p class="week-label">Week 4</p><h2>Documentation coming soon.</h2><p>This folder is ready for the next entry.</p></article>
+          <article id="week-5-panel" class="week-panel empty-panel" data-panel="week-5" hidden><p class="week-label">Week 5</p><h2>Documentation coming soon.</h2><p>This folder is ready for the next entry.</p></article>
         </div>
-      </section>
+      </dialog>
     </main>
     <script>
+      var reader = document.querySelector('.entry-reader');
       document.querySelectorAll('[data-week]').forEach(function (tab) {
         tab.addEventListener('click', function () {
           var week = tab.getAttribute('data-week');
-          document.querySelectorAll('[data-week]').forEach(function (item) {
-            var active = item === tab;
-            item.classList.toggle('is-active', active);
-            item.setAttribute('aria-selected', active ? 'true' : 'false');
-          });
           document.querySelectorAll('[data-panel]').forEach(function (panel) {
             panel.hidden = panel.getAttribute('data-panel') !== week;
           });
+          document.querySelector('#reader-title').textContent = 'Silvia Zhang / ' + week.replace('-', '');
+          reader.showModal();
+          reader.scrollTop = 0;
+          document.body.classList.add('reading');
         });
       });
+      document.querySelector('.close-folder').addEventListener('click', function () { reader.close(); });
+      reader.addEventListener('click', function (event) { if (event.target === reader) reader.close(); });
+      reader.addEventListener('close', function () { document.body.classList.remove('reading'); });
     </script>
   </body>
 </html>
