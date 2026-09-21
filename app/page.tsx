@@ -27,7 +27,10 @@ export default function Home() {
       </header>
 
       <section className="filing-cabinet" aria-label="Weekly documentation folders">
-        <img className="cabinet-art" src="/images/archive-cabinet.png" alt="Silvia Zhang — thesis documentation. An illustrated paper archive with five weekly folders." width="1122" height="1403" fetchPriority="high" />
+        <img className="cabinet-art" src="/images/archive-cabinet.png" alt="Silvia Zhang — thesis documentation. An illustrated paper archive with five weekly folders." width="1121" height="1403" fetchPriority="high" />
+        <div className="folder-layers" aria-hidden="true">
+          {weeks.map((week) => <img key={week} className={`folder-layer layer-${week}`} src="/images/archive-cabinet.png" alt="" width="1121" height="1403" draggable={false} />)}
+        </div>
         <nav className="folder-tabs" aria-label="Weekly entries">
           {weeks.map((week, index) => (
             <button
