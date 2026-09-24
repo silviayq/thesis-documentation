@@ -105,7 +105,35 @@ export default function Home() {
             </article>
           )}
 
-          {['week-3', 'week-4', 'week-5'].includes(activeWeek) && (
+          {activeWeek === 'week-3' && (
+            <article id="week-3-panel" className="week-panel">
+              <p className="week-label">Week 3</p>
+              <h2>Prototype2</h2>
+              <div className="text">
+                <p>The Last Meal is a Mixed Reality experience that combines virtual gameplay with physical interaction. The player begins by choosing a chicken dish in a simulated restaurant, but instead of receiving the meal, they are asked to take care of a virtual chick.</p>
+                <p>Through feeding, petting, and spending time with the chick, the player gradually forms an emotional connection with it. At the end, the player must make a final choice: keep the chicken or leave it behind.</p>
+              </div>
+              <video className="prototype-video" controls preload="metadata" playsInline aria-label="The Last Meal playtest video">
+                <source src="/videos/last-meal-playtest.m4v" type="video/mp4" />
+                Your browser does not support this video.
+              </video>
+              <section className="playtest-feedback" aria-labelledby="playtest-feedback-title">
+                <h3 id="playtest-feedback-title">Playtest Feedback: I love this game</h3>
+                <ul>
+                  <li>Idea is crazy and I love to play this game I feel like I can play it all day</li>
+                  <li>Ui is so adorable and also I love 3D character</li>
+                  <li>I want to give some feedback but this is soooo nice for me</li>
+                  <li>I want to see the chick first after see chicken moment</li>
+                  <li>Make the water interactive / movable.</li>
+                  <li>Allow the player to pick up the bowl.</li>
+                  <li>The chicken gets very angry when picked up from its nest.</li>
+                  <li>Allow the player to pick up and throw the chicken.</li>
+                </ul>
+              </section>
+            </article>
+          )}
+
+          {['week-4', 'week-5'].includes(activeWeek) && (
             <article id={`${activeWeek}-panel`} className="week-panel empty-panel">
               <p className="week-label">{activeWeek.replace('-', ' ')}</p>
               <h2>Documentation coming soon.</h2>

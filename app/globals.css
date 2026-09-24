@@ -59,6 +59,9 @@ figure { margin: 32px 0 0; }
 figcaption { font-size: 13px; margin-top: 10px; }
 .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 36px; }
 .gallery figure { margin: 0; }
+.prototype-video { display: block; width: 100%; height: auto; margin: 32px 0 0; background: #111; }
+.playtest-feedback { margin-top: 56px; padding-top: 28px; border-top: 1px solid #222; }
+.playtest-feedback h3 { margin: 0 0 24px; font-size: clamp(24px, 3vw, 32px); }
 .checklist { margin-top: 56px; padding-top: 28px; border-top: 1px solid #222; }
 .checklist h3 { margin: 0 0 30px; font-size: clamp(24px, 3vw, 32px); }
 .checklist-item { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; border-top: 1px dotted #777; padding: 24px 0; }
