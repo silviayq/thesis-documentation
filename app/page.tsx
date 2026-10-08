@@ -134,7 +134,27 @@ export default function Home() {
             </article>
           )}
 
-          {['week-4', 'week-5'].includes(activeWeek) && (
+          {activeWeek === 'week-4' && (
+            <article id="week-4-panel" className="week-panel">
+              <p className="week-label">Week 4</p>
+              <h2>Prototype3</h2>
+              <div className="gallery">
+                <figure><img src="/images/week-4-prototype-1.jpg" alt="Handheld virtual pet prototype showing a sheep" loading="lazy" /></figure>
+                <figure><img src="/images/week-4-prototype-2.jpg" alt="Decorated virtual pet prototype resting on a cup lid" loading="lazy" /></figure>
+              </div>
+              <section className="playtest-feedback" aria-labelledby="week-4-feedback-title">
+                <h3 id="week-4-feedback-title">Playtest Feedback:</h3>
+                <div className="text">
+                  <p>Diff from other pet game<br />more weird<br />other ways to feed</p>
+                  <p>Upside down to a evil vesion<br />attacking and fight back<br />assets scarier</p>
+                  <p>a cleaner theme<br />use place holder is fine</p>
+                </div>
+              </section>
+              <figure><img src="/images/week-4-feedback.jpg" alt="Handwritten notes about creating a different pet game or interactive toy" loading="lazy" /></figure>
+            </article>
+          )}
+
+          {activeWeek === 'week-5' && (
             <article id={`${activeWeek}-panel`} className="week-panel empty-panel">
               <p className="week-label">{activeWeek.replace('-', ' ')}</p>
               <h2>Documentation coming soon.</h2>
