@@ -155,10 +155,11 @@ export default function Home() {
           )}
 
           {activeWeek === 'week-5' && (
-            <article id={`${activeWeek}-panel`} className="week-panel empty-panel">
-              <p className="week-label">{activeWeek.replace('-', ' ')}</p>
-              <h2>Documentation coming soon.</h2>
-              <p>This folder is ready for the next entry.</p>
+            <article id="week-5-panel" className="week-panel">
+              <p className="week-label">Week 5</p>
+              <h2>Prototype4</h2>
+              <h3>Research</h3>
+              <figure><img src="/images/week-5-research.png" alt="Competitive analysis comparing PET PLAYER, CleverPet, FluentPet, and puzzle toys" loading="lazy" /></figure>
             </article>
           )}
         </div>
