@@ -171,8 +171,16 @@ export default function Home() {
             <article id="week-5-panel" className="week-panel">
               <p className="week-label">Week 5</p>
               <h2>Prototype4</h2>
-              <h3>Research</h3>
-              <figure><img src="/images/week-5-research.png" alt="Competitive analysis comparing PET PLAYER, CleverPet, FluentPet, and puzzle toys" loading="lazy" /></figure>
+              <h3>Concept Drawing</h3>
+              <figure><img src="/images/prototype-4-concept-drawing.png" alt="Concept drawing of a dog returning colored balls to a ball-launching device while a person uses the elements in a game on a large screen" loading="lazy" /></figure>
+              <div className="text concept-description">
+                <p>A ball-launching device connected to a game on a television or projector. I am considering balls in five colors. The dog would retrieve a ball, and the owner would help it bring the ball to a return opening. A camera at that opening would identify the color. Once the device had registered two returns, those colors would give the human player two elements for a battle against a computer opponent, which would also have two elements. An advantage system between the elements would determine the outcome. I am also considering letting the person choose how to use or order the two elements before the battle begins. This would give the owner a decision to make with whatever the dog brings back.</p>
+              </div>
+              <h3>Playtest</h3>
+              <video className="prototype-video" controls preload="metadata" playsInline aria-label="Prototype4 puppy playtest video">
+                <source src="/videos/puppy-playtest.mp4" type="video/mp4" />
+                Your browser does not support this video.
+              </video>
             </article>
           )}
         </div>
