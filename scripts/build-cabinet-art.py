@@ -20,10 +20,17 @@ folders = {
     2: ('M187 285 L188 278 Q188 263 203 263 L264 263 C286 263 285 234 312 234 L677 232 C687 211 691 204 712 204 L785 203 C810 203 826 252 850 263 L917 264 Q932 264 933 279 L939 530 L175 530 Z', (684,219,92,30)),
     1: ('M184 330 L186 299 Q186 285 201 285 L397 285 C420 285 426 244 451 244 L606 244 C632 244 638 285 665 285 L919 285 Q935 285 936 301 L942 540 L172 540 Z', (490,257,91,29)),
 }
+# Longer prototype names use typewriter lettering sized to fit each tab.
+prototype_labels = {2: (747, 242, 118), 3: (561, 201, 126), 4: (728, 141, 126), 5: (560, 108, 126)}
 layers = []
 for week, (path, label) in folders.items():
     art = f'<g class="folder-layer layer-week-{week}"><path d="{path}"/>'
-    art += lettering([label], str(week)) + '</g>'
+    if week in prototype_labels:
+        x, y, width = prototype_labels[week]
+        art += f'<text x="{x}" y="{y}" text-anchor="middle" font-family="Courier New, Courier, monospace" font-size="21" font-weight="700" textLength="{width}" lengthAdjust="spacingAndGlyphs" fill="#20201e" stroke="none">Prototype{week - 1}</text>'
+    else:
+        art += lettering([label], str(week))
+    art += '</g>'
     layers.append(art)
 
 front = '<g class="cabinet-front">' + '''

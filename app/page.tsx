@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { cabinetArtwork } from '../lib/cabinet-art';
 
 const weeks = ['week-1', 'week-2', 'week-3', 'week-4', 'week-5'];
+const folderNames: Record<string, string> = { 'week-1': 'week1', 'week-2': 'Prototype1', 'week-3': 'Prototype2', 'week-4': 'Prototype3', 'week-5': 'Prototype4' };
 
 export default function Home() {
   const [activeWeek, setActiveWeek] = useState('week-1');
@@ -30,28 +31,28 @@ export default function Home() {
       <section className="filing-cabinet" aria-label="Weekly documentation folders">
         <div className="cabinet-art" role="img" aria-label="Silvia Zhang — thesis documentation. An illustrated paper archive with five weekly folders." dangerouslySetInnerHTML={{ __html: cabinetArtwork }} />
         <nav className="folder-tabs" aria-label="Weekly entries">
-          {weeks.map((week, index) => (
+          {weeks.map((week) => (
             <button
               key={week}
               className={`folder-hotspot ${week}`}
               type="button"
-              aria-label={`Open week${index + 1}`}
+              aria-label={`Open ${folderNames[week]}`}
               aria-haspopup="dialog"
               onClick={() => openWeek(week)}
             >
-              <span className="sr-only">week{index + 1}</span>
+              <span className="sr-only">{folderNames[week]}</span>
             </button>
           ))}
         </nav>
       </section>
       <nav className="mobile-folders" aria-label="Open a weekly folder">
-        {weeks.map((week, index) => <button key={week} onClick={() => openWeek(week)}>week{index + 1}</button>)}
+        {weeks.map((week) => <button key={week} onClick={() => openWeek(week)}>{folderNames[week]}</button>)}
       </nav>
 
       <dialog ref={reader} className="entry-reader" aria-labelledby="reader-title" onClose={() => document.body.classList.remove('reading')} onClick={(event) => { if (event.target === event.currentTarget) closeWeek(); }}>
         <div className="reader-paper">
           <header className="reader-header">
-            <p id="reader-title">Silvia Zhang / {activeWeek.replace('-', '')}</p>
+            <p id="reader-title">Silvia Zhang / {folderNames[activeWeek]}</p>
             <button className="close-folder" onClick={closeWeek} autoFocus>Close folder</button>
           </header>
 
@@ -73,7 +74,7 @@ export default function Home() {
           {activeWeek === 'week-2' && (
             <article id="week-2-panel" className="week-panel">
               <p className="week-label">Week 2</p>
-              <h2>Paper prototype</h2>
+              <h2>Prototype1</h2>
               <h3>PET PLAYER</h3>
 
               <div className="text">
@@ -129,6 +130,14 @@ export default function Home() {
                   <li>Allow the player to pick up and throw the chicken.</li>
                 </ul>
               </section>
+              <section className="prototype-updates" aria-labelledby="prototype-2-updates-title">
+                <h3 id="prototype-2-updates-title">Further Updates</h3>
+                <div className="text">
+                  <p>I added an NFC interaction that lets the player tap a dish to enter the game. I also added pressure sensors to the knife and fork. When the player picks up the cutlery, the chick feels uneasy.</p>
+                </div>
+                <iframe className="youtube-video" src="https://www.youtube-nocookie.com/embed/e-wvGKPSDHQ?start=1" title="The Last Meal — updated prototype video" loading="lazy" referrerPolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                <p className="video-link"><a href="https://www.youtube.com/watch?v=e-wvGKPSDHQ&amp;t=1s" target="_blank" rel="noopener noreferrer">Watch the updated prototype on YouTube</a></p>
+              </section>
             </article>
           )}
 
@@ -136,6 +145,12 @@ export default function Home() {
             <article id="week-4-panel" className="week-panel">
               <p className="week-label">Week 4</p>
               <h2>Prototype3</h2>
+              <h3>Description</h3>
+              <div className="text prototype-description">
+                <p>I made a virtual sheep game on M5StickS3, a small programmable device manufactured by M5Stack. It has a color screen, buttons, Wi-Fi, and a rechargeable battery. I developed the game running on it rather than the hardware.</p>
+                <p>The device connects to the internet once a day at a set time to synchronize its clock, and the sheep sleeps on a schedule tied to real-world time. I wanted to try a pet that could be carried around and have a place in someone&apos;s daily routine.</p>
+                <p>I have not developed a larger story for this game yet. Its main focus is companionship through a small device and a pet that is sometimes asleep when the player wants to interact.</p>
+              </div>
               <div className="gallery">
                 <figure><img src="/images/week-4-prototype-1.jpg" alt="Handheld virtual pet prototype showing a sheep" loading="lazy" /></figure>
                 <figure><img src="/images/week-4-prototype-2.jpg" alt="Decorated virtual pet prototype resting on a cup lid" loading="lazy" /></figure>
